@@ -1,0 +1,124 @@
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/gaussian.js"></script>
+        <title>Particle Filtering</title>
+    </head>
+    <body>
+        
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="index.html" class="navbar-brand">Particle Filtering</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.html">1D Filtering<span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="twod.html">2D Filtering</a></li>
+                    
+                </ul>
+                
+            </div>
+        </nav>
+        
+        <div class="container">
+
+            
+
+
+            <div class="row">
+                <div class="col-md-9 text-center">
+                    <canvas id="theCanvas" width="800" height="800" style="border:2px solid #FFFFFF;">
+
+                    </canvas>
+                    
+                </div>
+            
+                <div class="col-md-3 text-center">
+
+                    
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p>Distance SD (m)</p>
+                            <input type="range" id="distance_sd" value="50" min="10" max="500" step="1" onchange="updateDistanceSDInput(this.value);"/>
+                            <input type="text" id="distanceInput" value="50">
+                        </div>
+                    </div>
+
+                    <br></br>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p>Speed SD (mph)</p>
+                            <input type="range" id="speed_sd" value="5.0" min="0" max="50" step="1" onchange="updateSpeedSDInput(this.value);"/>
+                            <input type="text" id="speedSDInput" value="5.0">
+                        </div>
+                    </div>
+
+                    <br></br>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p>Number of Beacons</p>
+                            <input type="range" id="nbeacons" value="8" min="1" max="50" step="1" onchange="updateNBeaconsInput(this.value);"/>
+                            <input type="text" id="nBeaconsInput" value="8">
+                        </div>
+                    </div>
+
+                    <br></br>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p>Min Speed (mph)</p>
+                            <input type="range" id="min_speed" value="5" min="0" max="100" step="1" onchange="updateMinSpeedInput(this.value);"/>
+                            <input type="text" id="speedRangeInput" value="10">
+                        </div>
+                    </div>
+
+
+                    <br></br>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button id="startbtn" class="btn btn-default" onclick="start();">Start</button>
+                            <button class="btn btn-default" onclick="stop();">Stop</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>This is an 800m x 800m box. The robot (green) gets a noisy distance to the nearest beacon (red), and also the name of the beacon.</p>
+                    <p>It is possible for nearest beacon to be identified incorrectly. That possibility increases with increasing Distance SD. For instance the robot might be 50m from beacon 1, and 30m from beacon 2; if beacon 1 reports a distance 38m and beacon 2 reports a distance of 39m then the only information given to the robot is that it's nearest beacon is beacon 1 at a distance of 38m.</p>
+                    <p>The beacons will be placed randomly everytime the system starts or the slider selecting the number of beacons changes</p>
+                    <p>The orange dot is the best estimate of the robot position, which is an average over all particle positions. The 3 ellipses represent multiples 1,2, and 3 of the x and y standard deviations and give an example of how confident the particle filter is.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/filter2d.js"></script>
+        <script type="text/javascript">
+            
+
+
+
+            $(document).ready(function(){
+                //init();
+
+
+
+            });
+                              
+                           
+            </script>
+    </body>
+
+</html>
